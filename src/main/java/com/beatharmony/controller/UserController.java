@@ -37,4 +37,24 @@ public class UserController {
     public void addUser(@RequestBody User user) {
         repository.save(user);
     }
+
+    @PutMapping(value="/users/addtrusted/{id}")
+    public User addTrustedUser(@PathVariable String id, @RequestBody User user) {
+        User source = repository.findById(id).get();
+        if (source != null) {
+            source.addTrustedUser(user);
+        }
+        repository.save(source);
+        return source;
+    }
+
+    @PutMapping(value="/users/removetrusted/{id}")
+    public User removeTrustedUser(@PathVariable String id, @RequestBody User user) {
+        User source = repository.findById(id).get();
+        if (source != null) {
+            source.removeTrustedUser(user);
+        }
+        repository.save(source);
+        return source;
+    }
 }

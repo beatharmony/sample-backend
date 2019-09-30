@@ -81,6 +81,26 @@ public class User {
     }
 
     public void addTrustedUser(User trustedUser) {
+        if (trustedUsers == null) {
+            this.trustedUsers = new ArrayList<>();
+        }
         trustedUsers.add(trustedUser);
+    }
+    public void removeTrustedUser(User trustedUser) {
+        if (trustedUsers == null) {
+            this.trustedUsers = new ArrayList<>();
+        }
+        if (trustedUsers.contains(trustedUser)) {
+            trustedUsers.remove(trustedUser);
+        }
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        User other = (User) o;
+        if (this.id.equals(other.id)) {
+            return true;
+        }
+        return false;
     }
 }

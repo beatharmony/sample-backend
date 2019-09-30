@@ -14,10 +14,10 @@ import java.util.List;
 @SpringBootApplication
 public class RestApplication implements CommandLineRunner {
 
-	private User rishma = new User("2", "Rishma", "Mendhekar", "rmendhekar", "rishma@gmail.com", (List<User>) null);
-	private User ankit = new User("3", "Ankit", "Verma", "averma", "ankit@gmail.com", (List<User>) null);
-	private User pradyumna = new User("4", "Pradyumna", "Mukunda", "pmukunda", "pradyumna@gmail.com", (List<User>) null);
-	private User christian = new User("5", "Christian", "Graham", "cgraham", "christian@gmail.com", (List<User>) null);
+	private User rishma = new User("2", "Rishma", "Mendhekar", "rmendhekar", "rishma@gmail.com", new ArrayList<>());
+	private User ankit = new User("3", "Ankit", "Verma", "averma", "ankit@gmail.com", new ArrayList<>());
+	private User pradyumna = new User("4", "Pradyumna", "Mukunda", "pmukunda", "pradyumna@gmail.com", new ArrayList<>());
+	private User christian = new User("5", "Christian", "Graham", "cgraham", "christian@gmail.com", new ArrayList<>());
 
 	List<User> trusted = new ArrayList<>(Arrays.asList(rishma, ankit, pradyumna, christian));
 	private User justin = new User("1", "Justin", "Higgins", "jhiggins", "just1higg@gmail.com", trusted);
