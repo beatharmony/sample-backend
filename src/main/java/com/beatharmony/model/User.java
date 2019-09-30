@@ -84,7 +84,9 @@ public class User {
         if (trustedUsers == null) {
             this.trustedUsers = new ArrayList<>();
         }
-        trustedUsers.add(id);
+        if (!trustedUsers.contains(id)) {
+            trustedUsers.add(id);
+        }
     }
     public void removeTrustedUser(String id) {
         if (trustedUsers == null) {
@@ -98,7 +100,7 @@ public class User {
     @Override
     public boolean equals(Object o) {
         User other = (User) o;
-        if (this.id.equals(other.id)) {
+        if (this.id.equals(other.getId())) {
             return true;
         }
         return false;
