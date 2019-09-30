@@ -2,7 +2,7 @@ package com.beatharmony.controller;
 
 import com.beatharmony.model.User;
 import com.beatharmony.data.UserRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import com.beatharmony.util.StringResponse;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -39,20 +39,20 @@ public class UserController {
     }
 
     @PutMapping(value="/users/addtrusted/{id}")
-    public User addTrustedUser(@PathVariable String id, @RequestBody User user) {
+    public User addTrustedUser(@PathVariable String id, @RequestBody StringResponse response) {
         User source = repository.findById(id).get();
         if (source != null) {
-            source.addTrustedUser(user);
+            source.addTrustedUser(response.getText());
         }
         repository.save(source);
         return source;
     }
 
     @PutMapping(value="/users/removetrusted/{id}")
-    public User removeTrustedUser(@PathVariable String id, @RequestBody User user) {
+    public User removeTrustedUser(@PathVariable String id, @RequestBody StringResponse response) {
         User source = repository.findById(id).get();
         if (source != null) {
-            source.removeTrustedUser(user);
+            source.removeTrustedUser(response.getText());
         }
         repository.save(source);
         return source;

@@ -19,9 +19,8 @@ public class RestApplication implements CommandLineRunner {
 	private User pradyumna = new User("4", "Pradyumna", "Mukunda", "pmukunda", "pradyumna@gmail.com", new ArrayList<>());
 	private User christian = new User("5", "Christian", "Graham", "cgraham", "christian@gmail.com", new ArrayList<>());
 
-	List<User> trusted = new ArrayList<>(Arrays.asList(rishma, ankit, pradyumna, christian));
+	List<String> trusted = new ArrayList<>(Arrays.asList("2", "3", "4", "5"));
 	private User justin = new User("1", "Justin", "Higgins", "jhiggins", "just1higg@gmail.com", trusted);
-
 	private List<User> users = new ArrayList<>(Arrays.asList(justin, rishma, ankit, pradyumna, christian));
 
 	@Autowired

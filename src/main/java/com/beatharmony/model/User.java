@@ -12,14 +12,14 @@ public class User {
     private String lastName;
     private String username;
     private String email;
-    private List<User> trustedUsers;
+    private List<String> trustedUsers;
     //interest
 
     public User() {
 
     }
 
-    public User(String id, String firstName, String lastName, String username, String email, List<User> trustedUsers) {
+    public User(String id, String firstName, String lastName, String username, String email, List<String> trustedUsers) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
@@ -29,7 +29,7 @@ public class User {
     }
 
     public User(String id, String firstName, String lastName, String username, String email) {
-        this(id, firstName, lastName, username, email, new ArrayList<User>());
+        this(id, firstName, lastName, username, email, new ArrayList<String>());
     }
 
     public String getId() {
@@ -72,26 +72,26 @@ public class User {
         this.email = email;
     }
 
-    public List<User> getTrustedUsers() {
+    public List<String> getTrustedUsers() {
         return trustedUsers;
     }
 
-    public void setTrustedUsers(List<User> trustedUsers) {
+    public void setTrustedUsers(List<String> trustedUsers) {
         this.trustedUsers = trustedUsers;
     }
 
-    public void addTrustedUser(User trustedUser) {
+    public void addTrustedUser(String id) {
         if (trustedUsers == null) {
             this.trustedUsers = new ArrayList<>();
         }
-        trustedUsers.add(trustedUser);
+        trustedUsers.add(id);
     }
-    public void removeTrustedUser(User trustedUser) {
+    public void removeTrustedUser(String id) {
         if (trustedUsers == null) {
             this.trustedUsers = new ArrayList<>();
         }
-        if (trustedUsers.contains(trustedUser)) {
-            trustedUsers.remove(trustedUser);
+        if (trustedUsers.contains(id)) {
+            trustedUsers.remove(id);
         }
     }
 
