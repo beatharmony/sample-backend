@@ -24,8 +24,8 @@ public class UserController {
     }
 
     @RequestMapping("/users/name/{name}")
-    public User getUserByName(@PathVariable String name) {
-        return userService.getUserByName(name);
+    public List<User> getUserByName(@PathVariable String name) {
+        return userService.getUsersByName(name);
     }
 
     @RequestMapping(method=RequestMethod.POST, value="/users")
