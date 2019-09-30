@@ -1,11 +1,15 @@
 package com.beatharmony.model;
 
+import com.sun.media.sound.SF2InstrumentRegion;
+
 import java.util.ArrayList;
 import java.util.List;
 
+
 public class User {
     private String id;
-    private String name;
+    private String firstName;
+    private String lastName;
     private String username;
     private String email;
     private List<User> trustedUsers;
@@ -15,16 +19,17 @@ public class User {
 
     }
 
-    public User(String id, String name, String username, String email, List<User> trustedUsers) {
+    public User(String id, String firstName, String lastName, String username, String email, List<User> trustedUsers) {
         this.id = id;
-        this.name = name;
+        this.firstName = firstName;
+        this.lastName = lastName;
         this.username = username;
         this.email = email;
         this.trustedUsers = trustedUsers;
     }
 
-    public User(String id, String name, String username, String email) {
-        this(id, name, username, email, new ArrayList<User>());
+    public User(String id, String firstName, String lastName, String username, String email) {
+        this(id, firstName, lastName, username, email, new ArrayList<User>());
     }
 
     public String getId() {
@@ -35,12 +40,20 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
     }
 
     public String getUsername() {

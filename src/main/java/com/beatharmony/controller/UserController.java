@@ -1,35 +1,40 @@
 package com.beatharmony.controller;
 
 import com.beatharmony.model.User;
-import com.beatharmony.service.UserService;
+import com.beatharmony.data.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @RestController
 public class UserController {
 
-    @Autowired
-    private UserService userService;
+    private final UserRepository repository;
 
-    @RequestMapping("/users")
+    public UserController(UserRepository repository) {
+        this.repository = repository;
+    }
+
+    @GetMapping("/users")
     public List<User> getAllUsers() {
-        return userService.getAllUsers();
+        return repository.findAll();
     }
 
-    @RequestMapping("/users/id/{id}")
+    @GetMapping("/users/id/{id}")
     public User getUserById(@PathVariable String id) {
-        return userService.getUserById(id);
+        Optional<User> op =  repository.findById(id);
+        return op.get();
     }
 
-    @RequestMapping("/users/name/{name}")
-    public User getUserByName(@PathVariable String name) {
-        return userService.getUserByName(name);
+    @GetMapping("/users/name/first/{name}")
+    public List<User> getUserByName(@PathVariable String name) {
+        return repository.findByFirstName(name);
     }
 
-    @RequestMapping(method=RequestMethod.POST, value="/users")
+    @PostMapping(value="/users")
     public void addUser(@RequestBody User user) {
-        userService.addUser(user);
+        repository.save(user);
     }
 }
