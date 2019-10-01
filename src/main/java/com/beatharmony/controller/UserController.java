@@ -5,6 +5,8 @@ import com.beatharmony.data.UserRepository;
 import com.beatharmony.util.StringResponse;
 import org.springframework.web.bind.annotation.*;
 
+import javax.ws.rs.Path;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -40,22 +42,41 @@ public class UserController {
     }
 
     @PutMapping(value="/users/addtrusted/{id}")
-    public User addTrustedUser(@PathVariable String id, @RequestBody StringResponse response) {
+    public StringResponse addTrustedUser(@PathVariable String id, @RequestBody StringResponse response) {
         User source = repository.findById(id).get();
         if (source != null) {
-            source.addTrustedUser(response.getText());
+            if (source.addTrustedUser(response.getText())) {
+                repository.save(source);
+                return new StringResponse("Successfully added user " + response.getText() + " to user " + id);
+            } else {
+                return new StringResponse("User " + response.getText() + " already exists in list of user " + id);
+            }
         }
-        repository.save(source);
-        return source;
+        return new StringResponse("Action failed");
     }
 
     @PutMapping(value="/users/removetrusted/{id}")
-    public User removeTrustedUser(@PathVariable String id, @RequestBody StringResponse response) {
+    public StringResponse removeTrustedUser(@PathVariable String id, @RequestBody StringResponse response) {
         User source = repository.findById(id).get();
         if (source != null) {
-            source.removeTrustedUser(response.getText());
+            if (source.removeTrustedUser(response.getText())) {
+                repository.save(source);
+                return new StringResponse("Successfully removed user " + response.getText() + " from user " + id);
+            } else {
+                return new StringResponse("Could not find user " + response.getText() + " in list of user " + id);
+            }
         }
-        repository.save(source);
-        return source;
+        return new StringResponse("Action failed");
+    }
+
+    @GetMapping(value="/users/{id}/trusted")
+    public List<User> getTrustedList(@PathVariable String id) {
+        User source = repository.findById(id).get();
+        List<String> trustedIDs= source.getTrustedUsers();
+        List<User> trustedUsers = new ArrayList<>();
+        for (String s : trustedIDs) {
+            trustedUsers.add(repository.findById(s).get());
+        }
+        return trustedUsers;
     }
 }

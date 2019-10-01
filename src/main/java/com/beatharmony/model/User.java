@@ -80,21 +80,25 @@ public class User {
         this.trustedUsers = trustedUsers;
     }
 
-    public void addTrustedUser(String id) {
+    public boolean addTrustedUser(String id) {
         if (trustedUsers == null) {
             this.trustedUsers = new ArrayList<>();
         }
         if (!trustedUsers.contains(id)) {
             trustedUsers.add(id);
+            return true;
         }
+        return false;
     }
-    public void removeTrustedUser(String id) {
+    public boolean removeTrustedUser(String id) {
         if (trustedUsers == null) {
             this.trustedUsers = new ArrayList<>();
         }
         if (trustedUsers.contains(id)) {
             trustedUsers.remove(id);
+            return true;
         }
+        return false;
     }
 
     @Override

@@ -2,6 +2,8 @@ package com.beatharmony;
 
 import com.beatharmony.data.PostRepository;
 import com.beatharmony.data.UserRepository;
+import com.beatharmony.model.Playlist;
+import com.beatharmony.model.Post;
 import com.beatharmony.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -24,6 +26,8 @@ public class RestApplication implements CommandLineRunner {
 	private User justin = new User("1", "Justin", "Higgins", "jhiggins", "just1higg@gmail.com", trusted);
 	private List<User> users = new ArrayList<>(Arrays.asList(justin, rishma, ankit, pradyumna, christian));
 
+	private List<Post> posts = new ArrayList<>();
+
 	@Autowired
 	private UserRepository userRepository;
 
@@ -39,6 +43,9 @@ public class RestApplication implements CommandLineRunner {
 		userRepository.deleteAll();
 		postRepository.deleteAll();
 
+		posts.add(new Post("1", "1", "Check out my new playlist!"));
+
+		postRepository.saveAll(posts);
 		userRepository.saveAll(users);
 	}
 }

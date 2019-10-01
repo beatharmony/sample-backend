@@ -8,18 +8,24 @@ public class Post {
     private String user;
     private String text;
     private List<String> likedBy;
+    private Playlist playlist;
 
     public Post() {}
 
-    public Post(String id, String user, String text, List<String> likedBy) {
+    public Post(String id, String user, String text, List<String> likedBy, Playlist playlist) {
         this.id = id;
         this.user = user;
         this.text = text;
         this.likedBy = likedBy;
+        this.playlist = playlist;
     }
 
     public Post(String id, String user, String text) {
-        this(id, user, text, new ArrayList<>());
+        this(id, user, text, new ArrayList<>(), null);
+    }
+
+    public Post(String id, String user, String text, List<String> likedBy) {
+        this(id, user, text, likedBy, null);
     }
 
     public String getId() {
@@ -52,6 +58,14 @@ public class Post {
 
     public void setText(String text) {
         this.text = text;
+    }
+
+    public Playlist getPlaylist() {
+        return playlist;
+    }
+
+    public void setPlaylist(Playlist playlist) {
+        this.playlist = playlist;
     }
 
     public void addLikedBy(String id) {
