@@ -9,12 +9,15 @@ buildNumber.properties
 .mvn/timing.properties
 
 .class
+.classpath
 .idea
 .idea/
 *.iws
 *.iml
 *.ipr
 HELP.md
+.project
+.settings/
 target/
 
 
