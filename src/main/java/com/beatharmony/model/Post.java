@@ -5,27 +5,23 @@ import java.util.List;
 
 public class Post {
     private String id;
-    private String user;
+    private String postedBy;
     private String text;
+    private String link;
     private List<String> likedBy;
-    private Playlist playlist;
 
     public Post() {}
 
-    public Post(String id, String user, String text, List<String> likedBy, Playlist playlist) {
+    public Post(String id, String postedBy, String text, String link, List<String> likedBy) {
         this.id = id;
-        this.user = user;
+        this.postedBy = postedBy;
         this.text = text;
+        this.link = link;
         this.likedBy = likedBy;
-        this.playlist = playlist;
     }
 
-    public Post(String id, String user, String text) {
-        this(id, user, text, new ArrayList<>(), null);
-    }
-
-    public Post(String id, String user, String text, List<String> likedBy) {
-        this(id, user, text, likedBy, null);
+    public Post(String id, String postedBy, String text, String link) {
+        this(id, postedBy, text, link, new ArrayList<>());
     }
 
     public String getId() {
@@ -36,20 +32,12 @@ public class Post {
         this.id = id;
     }
 
-    public String getUser() {
-        return user;
+    public String getPostedBy() {
+        return this.postedBy;
     }
 
-    public void setUser(String user) {
-        this.user = user;
-    }
-
-    public List<String> getLikedBy() {
-        return likedBy;
-    }
-
-    public void setLikedBy(List<String> likedBy) {
-        this.likedBy = likedBy;
+    public void setPostedBy(String postedBy) {
+        this.postedBy = postedBy;
     }
 
     public String getText() {
@@ -60,12 +48,20 @@ public class Post {
         this.text = text;
     }
 
-    public Playlist getPlaylist() {
-        return playlist;
+    public String getLink() {
+        return link;
     }
 
-    public void setPlaylist(Playlist playlist) {
-        this.playlist = playlist;
+    public void setLink(String link) {
+        this.link = link;
+    }
+
+    public List<String> getLikedBy() {
+        return likedBy;
+    }
+
+    public void setLikedBy(List<String> likedBy) {
+        this.likedBy = likedBy;
     }
 
     public void addLikedBy(String id) {

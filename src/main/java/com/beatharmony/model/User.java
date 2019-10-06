@@ -90,6 +90,7 @@ public class User {
         }
         return false;
     }
+
     public boolean removeTrustedUser(String id) {
         if (trustedUsers == null) {
             this.trustedUsers = new ArrayList<>();
