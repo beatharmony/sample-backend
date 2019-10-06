@@ -35,7 +35,11 @@ public class UserController {
         return repository.findByFirstName(name);
     }
 
-    //needs compliance
+    @GetMapping("/users/username/{username}")
+    public List<User> getUserByUsername(@PathVariable String username) {
+        return repository.findByUsername(username);
+    }
+
     @PostMapping(value="/users")
     public void addUser(@RequestBody User user) {
         repository.save(user);
