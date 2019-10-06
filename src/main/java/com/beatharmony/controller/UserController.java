@@ -83,4 +83,14 @@ public class UserController {
         }
         return trustedUsers;
     }
+
+    @DeleteMapping(value="/users/id")
+    public StringResponse deleteUser(@PathVariable String id) {
+        if (repository.existsById(id)) {
+            repository.deleteById(id);
+            return new StringResponse("User " + id + "removed successfully.");
+        } else {
+            return new StringResponse("User " + id+ "was not found, could not remove.");
+        }
+    }
 }

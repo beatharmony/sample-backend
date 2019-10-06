@@ -12,6 +12,7 @@ public class User {
     private String lastName;
     private String username;
     private String email;
+    private String avatar;
     private List<String> trustedUsers;
     //interest
 
@@ -19,17 +20,22 @@ public class User {
 
     }
 
-    public User(String id, String firstName, String lastName, String username, String email, List<String> trustedUsers) {
+    public User(String id, String firstName, String lastName, String username, String email, String avatar, List<String> trustedUsers) {
         this.id = id;
         this.firstName = firstName;
         this.lastName = lastName;
         this.username = username;
         this.email = email;
+        this.avatar = avatar;
         this.trustedUsers = trustedUsers;
     }
 
+    public User(String id, String firstName, String lastName, String username, String email, String avatar) {
+        this(id, firstName, lastName, username, email, avatar, new ArrayList<String>());
+    }
+
     public User(String id, String firstName, String lastName, String username, String email) {
-        this(id, firstName, lastName, username, email, new ArrayList<String>());
+        this(id, firstName, lastName, username, email, null, new ArrayList<>());
     }
 
     public String getId() {
@@ -70,6 +76,14 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 
     public List<String> getTrustedUsers() {
