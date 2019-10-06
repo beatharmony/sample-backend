@@ -84,7 +84,7 @@ public class UserController {
         return trustedUsers;
     }
 
-    @DeleteMapping(value="/users/id")
+    @DeleteMapping(value="/users/{id}")
     public StringResponse deleteUser(@PathVariable String id) {
         if (repository.existsById(id)) {
             repository.deleteById(id);
