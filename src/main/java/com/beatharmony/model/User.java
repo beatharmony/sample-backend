@@ -1,7 +1,5 @@
 package com.beatharmony.model;
 
-import com.sun.media.sound.SF2InstrumentRegion;
-
 import java.util.ArrayList;
 import java.util.List;
 

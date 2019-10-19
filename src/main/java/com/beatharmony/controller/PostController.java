@@ -5,7 +5,8 @@ import com.beatharmony.model.Post;
 import com.beatharmony.util.StringResponse;
 import org.springframework.web.bind.annotation.*;
 
-import javax.ws.rs.Path;
+import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,6 +32,10 @@ public class PostController {
     //needs compliance
     @PostMapping("/posts")
     public Post addPost(@RequestBody Post post) {
+        post.setDateTime(LocalDateTime.now());
+        if (post.getLikedBy() == null) {
+            post.setLikedBy(new ArrayList<>());
+        }
         return repository.save(post);
     }
 
