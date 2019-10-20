@@ -36,6 +36,9 @@ public class PostController {
         if (post.getLikedBy() == null) {
             post.setLikedBy(new ArrayList<>());
         }
+        if (post.getAlbumArt() == null) {
+            post.setAlbumArt("https://cdn.pixabay.com/photo/2017/11/10/05/34/play-2935460__340.png");
+        }
         return repository.save(post);
     }
 
