@@ -49,4 +49,39 @@ public class PostController {
             return new StringResponse("Post not found.");
         }
     }
+
+    //needs compliance
+    @PutMapping("/posts/{id}/like")
+    public StringResponse likePost(@RequestBody StringResponse response, @PathVariable String id) {
+        String likerId = response.getText();
+        if (repository.existsById(id)) {
+            Post source = repository.findById(id).get();
+            if (!source.getLikedBy().contains(likerId)) {
+                source.addLikedBy(likerId);
+                repository.save(source);
+                return new StringResponse("Like successful.");
+            } else {
+                return new StringResponse("User already likes said post.");
+            }
+        } else {
+            return new StringResponse("Post not found.");
+        }
+    }
+
+    @PutMapping("/posts/{id}/unlike")
+    public StringResponse unlikePost(@RequestBody StringResponse response, @PathVariable String id) {
+        String likerId = response.getText();
+        if (repository.existsById(id)) {
+            Post source = repository.findById(id).get();
+            if (source.getLikedBy().contains(likerId)) {
+                source.removeLikedBy(likerId);
+                repository.save(source);
+                return new StringResponse("Unlike successful.");
+            } else {
+                return new StringResponse("Post exists, but user has not liked post.");
+            }
+        } else {
+            return new StringResponse("Post not found.");
+        }
+    }
 }

@@ -15,10 +15,12 @@ public class Post {
     private LocalDateTime dateTime;
     private String username;
     private String profilePic;
+    private String albumArt;
+
 
     public Post() {}
 
-    public Post(String id, String postedBy, String text, String link, List<String> likedBy, String username, String profilePic) {
+    public Post(String id, String postedBy, String text, String link, List<String> likedBy, String username, String profilePic, String albumArt) {
         this.id = id;
         this.postedBy = postedBy;
         this.text = text;
@@ -26,10 +28,11 @@ public class Post {
         this.likedBy = likedBy;
         this.username = username;
         this.profilePic = profilePic;
+        this.albumArt = albumArt;
     }
 
     public Post(String id, String postedBy, String text, String link, String username, String profilePic) {
-        this(id, postedBy, text, link, new ArrayList<>(), username, profilePic);
+        this(id, postedBy, text, link, new ArrayList<>(), username, profilePic, null);
     }
 
     public String getId() {
@@ -94,6 +97,14 @@ public class Post {
 
     public void setDateTime(LocalDateTime dateTime) {
         this.dateTime = dateTime;
+    }
+
+    public String getAlbumArt() {
+        return albumArt;
+    }
+
+    public void setAlbumArt(String albumArt) {
+        this.albumArt = albumArt;
     }
 
     public void addLikedBy(String id) {
