@@ -1,21 +1,30 @@
 package com.beatharmony.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Playlist {
+    private String id;
     private String title;
     private String description;
     private String user;
     private List<PlaylistItem> items;
+    private int numLikes;
 
     public Playlist() {
     }
 
-    public Playlist(String title, String description, String user, List<PlaylistItem> items) {
+    public Playlist(String id, String title, String description, String user, List<PlaylistItem> items) {
+        this.id = id;
         this.title = title;
         this.description = description;
         this.user = user;
         this.items = items;
+        this.numLikes = 0;
+    }
+
+    public Playlist(String id, String title, String description, String user) {
+        this(id, title, description, user, new ArrayList<>());
     }
 
     public String getTitle() {
@@ -56,5 +65,25 @@ public class Playlist {
 
     public void removeItem(PlaylistItem item) {
         this.items.remove(item);
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public int getNumLikes() {
+        return numLikes;
+    }
+
+    public void setNumLikes(int numLikes) {
+        this.numLikes = numLikes;
+    }
+
+    public void incrementLikes() {
+        numLikes++;
     }
 }
